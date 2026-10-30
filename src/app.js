@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { getDb } = require("./config/db");
-
+const booksRouter = require("./routes/books");
 const app = express();
 
 const allowed = (process.env.CLIENT_URL || "http://localhost:3000")
@@ -29,7 +29,7 @@ app.get("/health", async (_req, res) => {
     res.status(500).json({ database: "not connected" });
   }
 });
-
+app.use("/books", booksRouter);
 app.use((_req, res) => res.status(404).json({ message: "Route not found." }));
 
 module.exports = app;
