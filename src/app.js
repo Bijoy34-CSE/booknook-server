@@ -3,6 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const { getDb } = require("./config/db");
 const booksRouter = require("./routes/books");
+const borrowsRouter = require("./routes/borrows");
+
 const app = express();
 
 const allowed = (process.env.CLIENT_URL || "http://localhost:3000")
@@ -29,7 +31,10 @@ app.get("/health", async (_req, res) => {
     res.status(500).json({ database: "not connected" });
   }
 });
+
 app.use("/books", booksRouter);
+app.use("/borrows", borrowsRouter);
+
 app.use((_req, res) => res.status(404).json({ message: "Route not found." }));
 
 module.exports = app;
