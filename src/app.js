@@ -36,5 +36,12 @@ app.use("/books", booksRouter);
 app.use("/borrows", borrowsRouter);
 
 app.use((_req, res) => res.status(404).json({ message: "Route not found." }));
-
+// Handles bad JSON bodies and any error that was not caught in a route
+app.use((err, _req, res, _next) => {
+  if (err.type === "entity.parse.failed") {
+    return res.status(400).json({ message: "Invalid JSON in the request body." });
+  }
+  console.error(err);
+  res.status(500).json({ message: "Something went wrong on the server." });
+});
 module.exports = app;
