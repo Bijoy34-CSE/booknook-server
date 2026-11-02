@@ -2,8 +2,8 @@
 
 REST API for **BookNook**, a small online library. Built with Express and MongoDB.
 
-Server repository: https://booknook-server-five.vercel.app/
-Client repository: https://booknook-client-nine.vercel.app/
+Server Link: https://booknook-server-five.vercel.app/
+Client repository: https://github.com/Bijoy34-CSE/booknook-client
 ## Features
 
 - 8 REST routes for books and borrows
